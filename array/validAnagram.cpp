@@ -37,4 +37,5 @@ int main()
     std::string b = "raj";
     bool c = s1.isAnagram(a, b);
     std::print("{}", c);
+    return 0;
 }
