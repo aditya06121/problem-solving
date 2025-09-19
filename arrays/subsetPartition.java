@@ -3,19 +3,23 @@ package arrays;
 
 public class subsetPartition {
 
-  public static boolean partition(int[] arr, int target){
-    if (target<0) return false;
-    boolean[] dp = new boolean[target+1];
-    for (int x : arr) {
-      for (int i = target; i >= x; i--) {
-        dp[i] = dp[i] || dp[i-x];
-      }
+    public static int find_sub(int[] arr, int diff ){
+      return find(arr,arr.length,diff);
     }
-    return dp[target];
-  }
+    public static int find(int[] arr, int n,int target){
+      if (target==0) return 1;
+      if (n==0) return 0;
+
+      int include = 0;
+      if(arr[n-1]<=target){
+        include = find (arr,n-1,target-arr[n-1]);
+      }
+      int exclude = find(arr,n-1,target);
+      return include+exclude;
+    }
   public static void main(String[] args) {
-    int arr[] = {1,1,1,1};
+    int arr[] = {2 ,7 ,9 ,5 ,4 ,3};
     int target = 2;
-    System.out.println(partition(arr, target));
+    System.out.println(find_sub(arr, target));
   }
 }
